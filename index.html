@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#2d6b63"> 
+        
+        <title>El fichero</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script type="text/javascript" src="Util/funciones.js"></script>
+        <link rel="stylesheet" href="estilos.css">
+
+    </head>
+
+    <body>
+        <br/>
+        <center>
+        <h1>Creador de PDFs para imprimir fichas</h1>
+        
+        <h2>Se recomienda descargar las imágenes  desde <a href="https://elmeta.cl/" target="_blank">ElMeta.cl</a></h2>
+
+        <h3><a href="instrucciones.html">¡Instrucciones y uso!</a></h3>
+        
+        
+        <b>Escoja el tamaño de hoja: </b>
+        <select name="paperSize" id="paperSize">
+            <option value="a4">A4</option>
+            <option value="letter" selected>Letter (default)</option>
+            <option value="legal">Legal</option>
+            <option value="tabloid">Tabloid</option>
+        </select>
+
+
+        <form onsubmit="guardarImagen(event)">
+
+            <b>Insertar Imagen:</b><input type="file" id="imagen" accept=".png" /> 
+            <br/>
+
+            <b>Cantidad de copias</b>:<input type="number" id="copias" value="1" min="1" />
+            <br/>
+
+            <button type="submit">Agregar Imagen</button>
+
+        </form>
+
+        <button class="boton-generar" onclick="crearPDF()">Crear PDF</button>
+        <button class="boton-borrar" onclick="borrarCola()">Borrar Cola</button>
+        <br /><br />
+
+        <h2>Lista de imágenes:</h2>
+        <div id="cola" class="display-cola">
+            <!-- Elementos de la cola se agregan aquí -->
+        </div>
+
+        <br/><br/> 
+        <p>Sitio hecho por Batink</p>
+        </center>
+
+        <!-- <button onclick="crearCola()">Crear Cola</button> -->
+
+        <!-- <a href="#" onclick="test()" class="imagen-cola"><img src="./Imagenes/Cuchu.png" alt="HTML tutorial" style="width:100px"/></a> -->
+        
+       
+    </body>
+
+</html>
