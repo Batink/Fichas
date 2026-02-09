@@ -16,29 +16,45 @@ function crearPDF(){
         unit: 'mm'
     });
 
+    console.log(doc.internal);
+
     for (let i = 0; i < imagenes.length; i++) {
 
         const img = new Image();
 
-        console.log("for: " + i);
+        // console.log("for: " + i);
         
         img.src = imagenes[i];
 
         img.onload = function() {
 
-            if(cuenta % 3 === 0 && cuenta !== 0){
+
+            // ======== SAlTO DE LINEA =======
+            if(((59+1)*(col+1))+10 < doc.internal.pageSize.width){
+                // doc.addImage(img, 'png',((59+1)*col) + 10, ((87+1)*fila) + 10, 59, 87);    
+            }
+            else {
                 col=0;
                 fila++;
+                // doc.addImage(img, 'png',((59+1)*col) + 10, ((87+1)*fila) + 10, 59, 87);    
             }
+            // ================================
 
-            console.log("onload cuenta: " + cuenta);
+            
+            // =========== SALTO DE PÁGINA ===========
 
-            // console.log(col, fila);
-            if (cuenta % 9 === 0 && cuenta !== 0){
-                fila = 0;
-                col = 0;
+            if(((87+1)*(fila+1))+10 < doc.internal.pageSize.height){
+                //No hacer nada
+            }
+            else {
+                fila=0;
+                col=0;
                 doc.addPage();
             }
+
+            // =======================================
+            
+
             if(cuenta < imagenes.length - 1){
                 doc.addImage(img, 'png',((59+1)*col) + 10, ((87+1)*fila) + 10, 59, 87);
                 // doc.addPage();
@@ -46,6 +62,10 @@ function crearPDF(){
                 doc.addImage(img, 'png',((59+1)*col) + 10, ((87+1)*fila) + 10, 59, 87);
                 doc.save("Fichas.pdf");
             }
+
+
+            
+
             col++;
             cuenta++;
         };                  
@@ -94,4 +114,5 @@ function borrarCola(){
 
 function test() {
     alert("Test");
+
 }
